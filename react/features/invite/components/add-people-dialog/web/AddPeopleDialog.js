@@ -10,7 +10,7 @@ import { translate } from '../../../../base/i18n';
 import { JitsiRecordingConstants } from '../../../../base/lib-jitsi-meet';
 import { getLocalParticipant } from '../../../../base/participants';
 import { connect } from '../../../../base/redux';
-import EmbedMeetingTrigger from '../../../../embed-meeting/components/EmbedMeetingTrigger';
+/* import EmbedMeetingTrigger from '../../../../embed-meeting/components/EmbedMeetingTrigger'; */
 import { getActiveSession } from '../../../../recording';
 import { updateDialInNumbers } from '../../../actions';
 import { _getDefaultPhoneNumber, getInviteText, isAddPeopleEnabled, isDialOutEnabled } from '../../../functions';
@@ -152,7 +152,7 @@ function AddPeopleDialog({
                 <InviteByEmailSection
                     inviteSubject = { inviteSubject }
                     inviteText = { invite } />
-                <EmbedMeetingTrigger />
+                {/* <EmbedMeetingTrigger /> */}
                 <div className = 'invite-more-dialog separator' />
                 {
                     _liveStreamViewURL

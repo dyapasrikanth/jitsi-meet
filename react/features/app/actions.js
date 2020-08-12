@@ -314,12 +314,17 @@ export function maybeRedirectToWelcomePage(options: Object = {}) {
 
         // if Welcome page is enabled redirect to welcome page after 3 sec, if
         // there is a thank you message to be shown, 0.5s otherwise.
-        if (getState()['features/base/config'].enableWelcomePage) {
+        /* if (getState()['features/base/config'].enableWelcomePage) {
             setTimeout(
                 () => {
                     dispatch(redirectWithStoredParams('/'));
                 },
                 options.showThankYou ? 3000 : 500);
-        }
+        } */
+        setTimeout(
+            () => {
+                dispatch(() => window.location.replace("https://evacloud.io"));
+            },
+            options.showThankYou ? 3000 : 500);
     };
 }

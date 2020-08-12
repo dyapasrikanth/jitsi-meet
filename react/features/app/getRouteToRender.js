@@ -125,10 +125,11 @@ function _getWebWelcomePageRoute(state): Promise<Route> {
     } else {
         // Web: if the welcome page is disabled, go directly to a random room.
 
-        let href = window.location.href;
+        /* let href = window.location.href;
 
         href.endsWith('/') || (href += '/');
-        route.href = href + generateRoomWithoutSeparator();
+        route.href = href + generateRoomWithoutSeparator(); */
+        window.location.replace('https://evacloud.io');
     }
 
     return Promise.resolve(route);

@@ -96,7 +96,7 @@ var config = {
     // notify the user if there is noise, other than voice, coming from the current
     // selected microphone. The purpose it to let the user know that the input could
     // be potentially unpleasant for other meeting participants.
-    enableNoisyMicDetection: true,
+    enableNoisyMicDetection: false,
 
     // Start the conference in audio only mode (no video is being received nor
     // sent).
@@ -314,7 +314,7 @@ var config = {
 
     // Whether to use a welcome page or not. In case it's false a random room
     // will be joined when no room is specified.
-    enableWelcomePage: true,
+    enableWelcomePage: false,
 
     // Enabling the close page will ignore the welcome page redirection when
     // a call is hangup.
@@ -324,12 +324,12 @@ var config = {
     // disable1On1Mode: false,
 
     // Default language for the user interface.
-    // defaultLanguage: 'en',
+    defaultLanguage: 'en',
 
     // If true all users without a token will be considered guests and all users
     // with token will be considered non-guests. Only guests will be allowed to
     // edit their profile.
-    enableUserRolesBasedOnToken: false,
+    enableUserRolesBasedOnToken: true,
 
     // Whether or not some features are checked based on token.
     // enableFeaturesBasedOnToken: false,
@@ -338,7 +338,7 @@ var config = {
     // lockRoomGuestEnabled: false,
 
     // When enabled the password used for locking a room is restricted to up to the number of digits specified
-    // roomPasswordNumberOfDigits: 10,
+    roomPasswordNumberOfDigits: 10,
     // default: roomPasswordNumberOfDigits: false,
 
     // Message to show the users. Example: 'The service will be down for
@@ -487,20 +487,20 @@ var config = {
     // Local Recording
     //
 
-    // localRecording: {
+    //localRecording: {
     // Enables local recording.
     // Additionally, 'localrecording' (all lowercase) needs to be added to
     // TOOLBAR_BUTTONS in interface_config.js for the Local Recording
     // button to show up on the toolbar.
-    //
-    //     enabled: true,
-    //
+    
+    //    enabled: true,
+    
 
     // The recording format, can be one of 'ogg', 'flac' or 'wav'.
-    //     format: 'flac'
-    //
+    //    format: 'wav'
+    
 
-    // },
+    //},
 
     // Options related to end-to-end (participant to participant) ping.
     // e2eping: {
