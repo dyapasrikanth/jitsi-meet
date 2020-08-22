@@ -128,7 +128,7 @@ var interfaceConfig = {
      *
      * @type {boolean}
      */
-    MOBILE_APP_PROMO: false,
+    MOBILE_APP_PROMO: true,
 
     NATIVE_APP_NAME: 'Evacloud',
 
