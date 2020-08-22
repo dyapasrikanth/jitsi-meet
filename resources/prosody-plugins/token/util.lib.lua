@@ -113,48 +113,17 @@ function Util:get_public_key(keyId)
     if content == nil then
         -- If the key is not found in the cache.
         module:log("debug", "Cache miss for key: "..keyId);
-        local code;
-        local wait, done = async.waiter();
-        local function cb(content_, code_, response_, request_)
-            content, code = content_, code_;
-            if code == 200 or code == 204 then
-                self.cache:set(keyId, content);
-            else
-                module:log("warn", "Error on public key request: Code %s, Content %s",
-                code_, content_);
-            end
-            done();
-        end
-        local keyurl = path.join(self.asapKeyServer, hex.to(sha256(keyId))..'.pem');
-        module:log("debug", "Fetching public key from: "..keyurl);
-
-        -- We hash the key ID to work around some legacy behavior and make
-        -- deployment easier. It also helps prevent directory
-        -- traversal attacks (although path cleaning could have done this too).
-        local request = http.request(keyurl, {
-            headers = http_headers or {},
-            method = "GET"
-        }, cb);
-
-        -- TODO: Is the done() call racey? Can we cancel this if the request
-        --       succeedes?
-        local function cancel()
-            -- TODO: This check is racey. Not likely to be a problem, but we should
-            --       still stick a mutex on content / code at some point.
-            if code == nil then
-                -- no longer present in prosody 0.11, so check before calling
-                if http.destroy_request ~= nil then
-                    http.destroy_request(request);
-                end
-                done();
-            end
-        end
-        timer.add_task(http_timeout, cancel);
-        wait();
-
-        if code == 200 or code == 204 then
-            return content;
-        end
+        local content = [[-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtjEX+kvOIyWFouO2X7av
+surz+/9srEg47U/Jtq5iAGeSl7wldtOBVp2gPOoe89KRRHz4wfvy470km9kr7+EE
+bTMgKnNoHN1oIyZMelxQoDSw7xmpfymSE//svfd72Jrw37jweM+KXGmtMp4h3BI2
+oZEHrw+cNVvy1fAGmjbolBQRtQFQvS2aIfAbQyYHaI4of+qNc8cRf4N311F5vZie
+uYrjCdd3R65r+SpJPyKaiIaPy+zXHEIznfXWrB5U/BGKWODFvZLHgnmy6/7Ocmgb
+C01F1tSm+/r+/uc9m+BtNdu0GhU2hfCSURwa26+Ty/vwW80Y9Mm6bt/ajq6TAC/R
+0QIDAQAB
+-----END PUBLIC KEY-----]];
+        self.cache:set(keyId, content);
+        return content;
     else
         -- If the key is in the cache, use it.
         module:log("debug", "Cache hit for key: "..keyId);
