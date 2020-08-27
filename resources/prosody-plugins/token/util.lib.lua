@@ -126,10 +126,19 @@ function Util:get_public_key(keyId)
     local content = self.cache:get(keyId);
     if content == nil then
         -- If the key is not found in the cache.
-        module:log("debug", "Cache miss for key: "..keyId);
-        local keyurl = path.join(self.asapKeyServer, hex.to(sha256(keyId))..'.pem');
-        module:log("debug", "Fetching public key from: "..keyurl);
-        content = http_get_with_retry(keyurl, nr_retries);
+        -- module:log("debug", "Cache miss for key: "..keyId);
+        -- local keyurl = path.join(self.asapKeyServer, hex.to(sha256(keyId))..'.pem');
+        -- module:log("debug", "Fetching public key from: "..keyurl);
+        -- content = http_get_with_retry(keyurl, nr_retries);
+        content = [[-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtjEX+kvOIyWFouO2X7av
+surz+/9srEg47U/Jtq5iAGeSl7wldtOBVp2gPOoe89KRRHz4wfvy470km9kr7+EE
+bTMgKnNoHN1oIyZMelxQoDSw7xmpfymSE//svfd72Jrw37jweM+KXGmtMp4h3BI2
+oZEHrw+cNVvy1fAGmjbolBQRtQFQvS2aIfAbQyYHaI4of+qNc8cRf4N311F5vZie
+uYrjCdd3R65r+SpJPyKaiIaPy+zXHEIznfXWrB5U/BGKWODFvZLHgnmy6/7Ocmgb
+C01F1tSm+/r+/uc9m+BtNdu0GhU2hfCSURwa26+Ty/vwW80Y9Mm6bt/ajq6TAC/R
+0QIDAQAB
+-----END PUBLIC KEY-----]];
         if content ~= nil then
             self.cache:set(keyId, content);
         end
