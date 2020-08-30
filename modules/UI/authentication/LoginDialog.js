@@ -247,7 +247,8 @@ export default {
 
                 // Open login popup.
                 if (submitValue === 'authNow') {
-                    onAuthNow();
+                    // onAuthNow();
+                    window.location.replace("https://evacloud.io/host");
                 }
             }
         );
